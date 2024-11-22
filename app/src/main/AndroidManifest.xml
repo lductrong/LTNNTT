@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="Clothing"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme.MainActivity"
+        tools:targetApi="31">
+        <activity android:name=".Activity.AdminActivity" />
+        <activity android:name=".Fragment_User.Home.Product_Detail" />
+        <activity android:name=".Activity.RegisterActivity" />
+        <activity android:name=".Fragment_Admin.PhieuNhapStatus.PhieuNhapStatus_add"/>
+        <activity android:name=".Fragment_Admin.Customer.Customer_add"/>
+        <activity android:name=".Fragment_Admin.PhieuNhap.Fragment_phieunhap_add"/>
+        <activity android:name=".Fragment_User.Profile.Profile_update" />
+        <activity android:name=".Fragment_Admin.PhieuNhap.Fragment_ctphieunhap_add" />
+        <activity android:name=".Fragment_Admin.PhieuNhap.CT_PhieuNhap"/>
+        <activity android:name=".Fragment_Admin.Order_Status.OrderStatus_add"/>
+        <activity android:name=".Fragment_Admin.Product.Product_Additems"/>
+        <activity android:name=".Fragment_Admin.Staff.Staff_addstaff"/>
+        <activity android:name=".Fragment_Admin.Order.OrderDetails"/>
+        <activity android:name=".Fragment_Admin.Inventory.Inventory_add"/>
+        <activity android:name=".Fragment_Admin.ProductType.Producttype_Addtype"/>
+        <activity android:name=".Fragment_Admin.Order.Order_add"/>
+        <activity android:name=".Fragment_Admin.Order.OrderDetail_add"/>
+        <activity android:name=".Fragment_Admin.Staff.Staff_edit"/>
+        <activity android:name=".Fragment_Admin.Product.Product_edit"/>
+        <activity android:name=".Fragment_Admin.ProductType.Producttype_edit"/>
+        <activity android:name=".Fragment_Admin.Customer.Customer_edit"/>
+        <activity android:name=".Fragment_Admin.Inventory.Inventory_edit"/>
+        <activity android:name=".Fragment_Admin.Order_Status.Orderstatus_edit"/>
+        <activity android:name=".Fragment_Admin.PhieuNhap.Phieunhap_edit"/>
+        <activity android:name=".Fragment_Admin.PhieuNhapStatus.Phieunhapstatus_edit"/>
+        <activity android:name=".Fragment_Admin.PhieuNhap.CT_PhieuNhap_edit"/>
+        <activity android:name=".Fragment_Admin.Order.Order_edit"/>
+        <activity android:name=".Fragment_Admin.Order.Orderdetail_edit"/>
+        <activity android:name=".Activity.UserActivity"
+            android:theme="@style/AppTheme.UserActivity"
+            />
+        <activity
+            android:screenOrientation="portrait"
+            android:name=".Activity.MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
