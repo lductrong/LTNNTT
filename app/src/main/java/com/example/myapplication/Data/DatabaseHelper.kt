@@ -781,10 +781,10 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
 
 
 //    ============================Thêm trạng thái phiếu nhập==============
-fun addPNstatus(pnstatus: Model_Phieunhap_status) : Long{
+    fun addPNstatus(pnstatus: Model_Phieunhap_status) : Long{
         val db = this.writableDatabase
         val values = ContentValues()
-    val id = generateUniqueId()
+        val id = generateUniqueId()
         values.put(PS_id, id)
         values.put(PS_status, pnstatus.status)
 
@@ -972,7 +972,7 @@ fun addPNstatus(pnstatus: Model_Phieunhap_status) : Long{
         values.put(imgproduct, cart.imgproduct)
 
         val success = db.insert(TABLE_CART, null, values)
-
+        db.close()
         return success
     }
 
@@ -1552,7 +1552,7 @@ fun addPNstatus(pnstatus: Model_Phieunhap_status) : Long{
     fun getWishList(customerId: String): ArrayList<Model_product> {
         val Wishlist: ArrayList<Model_product> = ArrayList()
         val query = """
-        SELECT $TABLE_PRODUCTS.$COLUMN_MASP, $TABLE_PRODUCTS.$COLUMN_TENSP, 
+        SELECT $TABLE_PRODUCTS.$COLUMN_ID, $TABLE_PRODUCTS.$COLUMN_MASP, $TABLE_PRODUCTS.$COLUMN_TENSP, 
                $TABLE_PRODUCTS.$COLUMN_GIA, $TABLE_PRODUCTS.$COLUMN_MALOAI, 
                $TABLE_PRODUCTS.$COLUMN_DONVI, $TABLE_PRODUCTS.$COLUMN_IMAGE
         FROM $TABLE_PRODUCTS
@@ -1571,7 +1571,7 @@ fun addPNstatus(pnstatus: Model_Phieunhap_status) : Long{
                     maloai = cursor.getString(cursor.getColumnIndex(COLUMN_MALOAI)),
                     donvi = cursor.getString(cursor.getColumnIndex(COLUMN_DONVI)),
                     img = cursor.getString(cursor.getColumnIndex(COLUMN_IMAGE)),
-                    productid =  cursor.getString(cursor.getColumnIndex(COLUMN_MASP))
+                    productid =  cursor.getString(cursor.getColumnIndex(COLUMN_ID))
                 )
                 Wishlist.add(product)
             } while (cursor.moveToNext())
@@ -2114,6 +2114,28 @@ fun addPNstatus(pnstatus: Model_Phieunhap_status) : Long{
         return producttype
     }
 
+    //----------------------trọng thêm sau-----------------
+    fun deleteFromWishlist(customerId: String, productId: String): Boolean {
+        val db = this.writableDatabase
+        val result = db.delete(
+            "wishlist",
+            "WL_customerid = ? AND WL_produtid = ?",
+            arrayOf(customerId, productId)
+        )
+        db.close()
+        return result > 0 // Trả về true nếu xóa thành công
+    }
+
+    fun addToCart(khid: String, productId: String) {
+        val db = writableDatabase
+        val values = ContentValues().apply {
+            put("khid", khid)
+            put("product_id", productId)
+            put("quantity", 1) // Mặc định số lượng là 1
+        }
+        db.insert("cart", null, values)
+        db.close()
+    }
 
 
 }
