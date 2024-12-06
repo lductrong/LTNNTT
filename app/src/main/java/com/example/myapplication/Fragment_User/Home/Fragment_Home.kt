@@ -57,35 +57,20 @@ private lateinit var edtSearch: EditText
         dbHelper = DatabaseHelper(requireContext())
 
         // Lấy các tham chiếu từ giao diện
-        rv_categories = view.findViewById(R.id.rv_categories)
         rv_product = view.findViewById(R.id.rv_product)
         viewPager = view.findViewById(R.id.viewPager)
         btnSort = view.findViewById(R.id.filter)
-        btnFilter = view.findViewById(R.id.btnsort)
-        edtSearch = view.findViewById(R.id.estfind)
 
         arguments?.let {
             accountId = it.getString("account_id").toString()
         }
 
         setupViewPager()
-        setupCategoryRecyclerView()
         setupProductRecyclerView()
 
         // Xử lý sự kiện click cho các nút
         btnSort.setOnClickListener { onSortClicked() }
-        btnFilter.setOnClickListener { onFilterClicked() }
         // Thêm TextWatcher cho tìm kiếm
-        edtSearch.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                val query = s.toString()
-                onSearch(query)
-            }
-
-            override fun afterTextChanged(s: Editable?) {}
-        })
 
         return view
     }
@@ -93,13 +78,6 @@ private lateinit var edtSearch: EditText
         adapter = ImageSliderAdapter(imageList)
         viewPager.adapter = adapter
         autoScrollImages()
-    }
-
-    private fun setupCategoryRecyclerView() {
-        rv_categories.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        val category = dbHelper.getAllProductType()
-        val adapter = Adapter_category(category)
-        rv_categories.adapter = adapter
     }
 
     private fun setupProductRecyclerView() {
@@ -130,17 +108,7 @@ private lateinit var edtSearch: EditText
         })
         rv_product.adapter = adapter
     }
-
-    private fun onFilterClicked() {
-        // Giả lập hành động lọc (lọc sản phẩm có giá trên 100,000)
-        val filteredProducts = dbHelper.getAllproduct().filter { it.gia > 100000 }
-        val adapter = Adapter_product_user(filteredProducts, object : Adapter_product_user.OnClickListener {
-            override fun onClick(position: Int, model: Model_product) {
-                // Mở chi tiết sản phẩm
-            }
-        })
-        rv_product.adapter = adapter
-    }
+    
     private fun onSearch(query: String) {
         val allProducts = dbHelper.getAllproduct()
         if (allProducts.isNullOrEmpty()) {
