@@ -27,6 +27,11 @@ private lateinit var txt_idkh: TextView
 private lateinit var txtaddress: EditText
 private lateinit var checkout: Button
 private lateinit var dbHelper: DatabaseHelper
+//thêm
+private lateinit var txtTotalAmount: TextView
+private lateinit var txtShippingFee: TextView
+private lateinit var txtGrandTotal: TextView
+
  private var accountId : String = ""
     private var khid: String = ""
     private var cartItems: List<Pair<Model_product, Int>>  = emptyList()
@@ -46,11 +51,18 @@ private lateinit var dbHelper: DatabaseHelper
         rv_cart = view.findViewById(R.id.rv_cart)
         checkout = view.findViewById(R.id.checkout)
         txtaddress = view.findViewById(R.id.txtaddress)
+//thê,m
+        txtTotalAmount = view.findViewById(R.id.textView10) // Thành tiền
+        txtShippingFee = view.findViewById(R.id.textView15) // Phí giao hàng
+        txtGrandTotal = view.findViewById(R.id.textView135) // Tổng tiền
+
         rv_cart.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         val cart = dbHelper.getCartWithQuantity(khid)
         val adapter = Adapter_Cart(cart)
         rv_cart.adapter = adapter
 
+        // goij hamf
+        calculateAndDisplayTotals()
         checkout.setOnClickListener {
             val orderId = dbHelper.checkout(cartItems,khid, txtaddress.text.toString(), "")
             if (orderId.isNotEmpty()) {
@@ -61,7 +73,26 @@ private lateinit var dbHelper: DatabaseHelper
         }
         return view
 
+
+
     }
+    private fun calculateAndDisplayTotals() {
+        var totalAmount = 0.0
+        val shippingFee = 5000.0 // Phí giao hàng cố định
 
+        // Tính tổng tiền dựa trên danh sách sản phẩm trong giỏ hàng
+        for (item in cartItems) {
+            val product = item.first
+            val quantity = item.second
+            totalAmount += product.gia * quantity
+        }
 
+        val grandTotal = totalAmount + shippingFee
+
+        // Hiển thị lên các TextView
+        txtTotalAmount.text = "${totalAmount}đ"
+        txtShippingFee.text = "${shippingFee}đ"
+        txtGrandTotal.text = "${grandTotal}đ"
+
+    }
 }
