@@ -66,25 +66,13 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <ImageView
-                        android:id="@+id/imageView5"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/red_circle"
-                        app:layout_constraintBottom_toTopOf="@+id/imageView4"
-                        app:layout_constraintEnd_toEndOf="@+id/imageView4"
-                        app:layout_constraintStart_toEndOf="@+id/imageView4"
-                        app:layout_constraintTop_toTopOf="@+id/imageView4" />
-
                     <TextView
                         android:id="@+id/textView16"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="1"
-                        app:layout_constraintBottom_toBottomOf="@+id/imageView5"
-                        app:layout_constraintEnd_toEndOf="@+id/imageView5"
-                        app:layout_constraintStart_toStartOf="@+id/imageView5"
-                        app:layout_constraintTop_toTopOf="@+id/imageView5" />
+                        tools:layout_editor_absoluteX="351dp"
+                        tools:layout_editor_absoluteY="7dp" />
 
                     <ImageView
                         android:id="@+id/imageView27"
@@ -99,21 +87,6 @@
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <EditText
-                    android:id="@+id/estfind"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_marginStart="18dp"
-                    android:layout_marginTop="18dp"
-                    android:layout_marginEnd="18dp"
-                    android:background="@drawable/border_edtsearch"
-                    android:drawableLeft="@drawable/search_icon"
-                    android:drawablePadding="5dp"
-                    android:hint="Search anything"
-                    android:paddingHorizontal="10dp"
-                    android:textSize="14dp"
-                    android:layout_marginBottom="10dp"
-                    android:shadowDx="2"   android:shadowDy="2"  android:shadowRadius="3"    android:elevation="4dp" />
             </LinearLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -196,11 +169,6 @@
                         android:text="Filter" />
                 </LinearLayout>
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_categories"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal" />
             </LinearLayout>
 
             <LinearLayout
