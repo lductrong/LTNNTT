@@ -1,0 +1,7 @@
+<!-- res/drawable/round_background.xml -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <corners android:radius="30dp"/> <!-- Số lớn để tạo hình tròn -->
+    <solid android:color="@android:color/transparent"/>
+    <stroke android:color="@android:color/transparent" android:width="0dp"/>
+</shape>
