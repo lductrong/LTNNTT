@@ -44,6 +44,7 @@ class UserActivity : AppCompatActivity() {
                             putString("account_id", accountId)
                         }
                     }
+                    // thêm profile
                     else -> null
                 }
             if (selectedFragment !=null){
