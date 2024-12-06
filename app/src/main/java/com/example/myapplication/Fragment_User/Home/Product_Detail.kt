@@ -30,6 +30,9 @@ class Product_Detail : AppCompatActivity() {
     private lateinit var txt_quantity : EditText;
     private  lateinit var imgshare: ImageView
     private lateinit var binding: ActivityMainBinding
+    private lateinit var btn_decrease : Button;
+    private lateinit var btn_increase : Button;
+    private lateinit var text_quantity : TextView;
 
     private val REQUEST_PERMISSION_CODE = 100
     private var accountId: String = ""
@@ -54,6 +57,9 @@ class Product_Detail : AppCompatActivity() {
         btn_addcart = findViewById(R.id.btn_addcart)
         addwishlish = findViewById(R.id.addwishlish)
         imgshare = findViewById(R.id.imgshare)
+        btn_decrease = findViewById(R.id.button_decrease)
+        btn_increase = findViewById(R.id.button_increase)
+        text_quantity = findViewById(R.id.text_quantity)
 
         val productname = intent.getStringExtra("productname")
         val imgUriString = intent.getStringExtra("imgsource")
@@ -84,6 +90,18 @@ class Product_Detail : AppCompatActivity() {
         addwishlish.setOnClickListener{
             addWishLish();
         }
+        var quantity = 1;
+        text_quantity.text = quantity.toString();
+        btn_decrease.setOnClickListener({
+            if (quantity > 0) { // Ngăn không cho giá trị nhỏ hơn 0
+                quantity--
+                text_quantity.text = quantity.toString();
+            }
+        })
+        btn_increase.setOnClickListener({
+            quantity++
+            text_quantity.text = quantity.toString();
+        })
         imgshare.setOnClickListener {
             val data: String = txt_productname.text.toString()
             if(data.isNotEmpty()){
