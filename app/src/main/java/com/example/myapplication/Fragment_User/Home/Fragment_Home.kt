@@ -108,7 +108,7 @@ private lateinit var edtSearch: EditText
         })
         rv_product.adapter = adapter
     }
-    
+
     private fun onSearch(query: String) {
         val allProducts = dbHelper.getAllproduct()
         if (allProducts.isNullOrEmpty()) {
