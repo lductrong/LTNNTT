@@ -59,7 +59,7 @@ class Product_Detail : AppCompatActivity() {
         imgshare = findViewById(R.id.imgshare)
         btn_decrease = findViewById(R.id.button_decrease)
         btn_increase = findViewById(R.id.button_increase)
-        text_quantity = findViewById(R.id.text_quantity)
+//        text_quantity = findViewById(R.id.text_quantity)
 
         val productname = intent.getStringExtra("productname")
         val imgUriString = intent.getStringExtra("imgsource")
@@ -91,16 +91,19 @@ class Product_Detail : AppCompatActivity() {
             addWishLish();
         }
         var quantity = 1;
-        text_quantity.text = quantity.toString();
+        txt_quantity.setText(quantity.toString())
+//        text_quantity.text = quantity.toString();
         btn_decrease.setOnClickListener({
             if (quantity > 0) { // Ngăn không cho giá trị nhỏ hơn 0
                 quantity--
-                text_quantity.text = quantity.toString();
+//                text_quantity.text = quantity.toString();
+                txt_quantity.setText(quantity.toString())
             }
         })
         btn_increase.setOnClickListener({
             quantity++
-            text_quantity.text = quantity.toString();
+//            text_quantity.text = quantity.toString();
+            txt_quantity.setText(quantity.toString())
         })
         imgshare.setOnClickListener {
             val data: String = txt_productname.text.toString()
